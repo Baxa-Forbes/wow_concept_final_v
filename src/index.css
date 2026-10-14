@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+:root {
+  /* Theme variables - Dark by default as in WOW CONCEPT screenshot */
+  --bg-primary: #070b14;
+  --bg-surface: #0c1322;
+  --bg-card: #0f182b;
+  --bg-card-hover: #142038;
+  --bg-card-subtle: rgba(15, 24, 43, 0.7);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.16);
+  --border-active: rgba(255, 255, 255, 0.35);
+
+  --text-primary: #f0f4fc;
+  --text-secondary: #90a0be;
+  --text-muted: #5e6f8c;
+  --text-inverted: #070b14;
+
+  --accent-gold: #d4af37;
+  --accent-glow: rgba(79, 120, 190, 0.15);
+  --pill-bg: rgba(255, 255, 255, 0.06);
+  --pill-active-bg: #f0f4fc;
+  --pill-active-text: #070b14;
+
+  --btn-primary-bg: #c8d4e6;
+  --btn-primary-hover: #dce7f7;
+  --btn-primary-text: #070b14;
+
+  --nav-bottom-bg: rgba(7, 11, 20, 0.88);
+  --modal-overlay: rgba(3, 5, 10, 0.88);
+
+  /* Fluid typography */
+  --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  --fs-logo: clamp(1.35rem, 4vw, 1.85rem);
+  --fs-h1: clamp(1.6rem, 5vw, 2.5rem);
+  --fs-h2: clamp(1.25rem, 3.8vw, 1.85rem);
+  --fs-card-title: clamp(1.25rem, 3vw, 1.65rem);
+  --fs-body: clamp(0.84rem, 1.6vw, 0.95rem);
+  --fs-caption: clamp(0.7rem, 1.3vw, 0.8rem);
+  --fs-tag: clamp(0.65rem, 1.1vw, 0.72rem);
+
+  /* Spacing */
+  --space-mobile-padding: 1rem;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f7f7f5;
+  --bg-surface: #ffffff;
+  --bg-card: #eeeee9;
+  --bg-card-hover: #e6e6e0;
+  --bg-card-subtle: rgba(255, 255, 255, 0.85);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.15);
+  --border-active: rgba(0, 0, 0, 0.35);
+
+  --text-primary: #121722;
+  --text-secondary: #58647a;
+  --text-muted: #8a96aa;
+  --text-inverted: #f7f7f5;
+
+  --accent-gold: #b08d24;
+  --accent-glow: rgba(0, 0, 0, 0.05);
+  --pill-bg: rgba(0, 0, 0, 0.05);
+  --pill-active-bg: #121722;
+  --pill-active-text: #ffffff;
+
+  --btn-primary-bg: #172033;
+  --btn-primary-hover: #222e47;
+  --btn-primary-text: #ffffff;
+
+  --nav-bottom-bg: rgba(247, 247, 245, 0.94);
+  --modal-overlay: rgba(20, 24, 34, 0.72);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Serif font utilities */
+.font-gallery-serif {
+  font-family: var(--font-serif);
+}
+
+.font-gallery-sans {
+  font-family: var(--font-sans);
+}
+
+/* CSS Grid Gallery Layouts */
+.art-grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .art-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .art-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .art-grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+/* Chamber Collections Responsive Grid */
+.chamber-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .chamber-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+/* Smooth Image hover & scale */
+.gallery-img-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background-color: var(--bg-surface);
+}
+
+.gallery-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Custom Scrollbar for horizontal pills */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Elegant selection */
+::selection {
+  background-color: #4f78be;
+  color: #ffffff;
+}

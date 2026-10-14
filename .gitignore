@@ -1,0 +1,15 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Image optimization backup (originals before compression)
+public/product-backup/
+
+# One-off conversion scripts
+convert-data.js
+convert-prices.js
