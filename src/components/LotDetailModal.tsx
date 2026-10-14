@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Share2, Eye, Home, Maximize2, ShieldCheck } from 'lucide-react';
+import { X, Share2, Eye, Home, Maximize2 } from 'lucide-react';
 import { LotItem } from '../types';
 import { formatPrice } from '../utils/format';
 
@@ -55,13 +55,6 @@ export const LotDetailModal: React.FC<LotDetailModalProps> = ({
     `Здравствуйте! Хочу запросить примерку лота: ${lot.lotNumber} «${lot.title}» (${lot.dimensions}) в моем интерьере.`
   );
   const telegramUrl = `https://t.me/wowconcept_admin?text=${telegramMessage}`;
-
-  const badgeLabels: Record<string, string> = {
-    UNIQUE: 'Уникальный экспонат',
-    MASTERPIECE: 'Шедевр коллекции',
-    EXCLUSIVE: 'Эксклюзивный лот',
-    NEW: 'Новое поступление',
-  };
 
   return (
     <>
@@ -168,19 +161,8 @@ export const LotDetailModal: React.FC<LotDetailModalProps> = ({
           {/* Right Side: Description, Specs & Direct Telegram Concierge */}
           <div className="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[52vh] md:max-h-none">
             <div className="space-y-4">
-              {/* Header info & Badges */}
+              {/* Header info */}
               <div>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[10px] tracking-[0.25em] font-semibold text-blue-400 font-gallery-sans uppercase">
-                    {lot.lotNumber}
-                  </span>
-                  {lot.badgeType && (
-                    <span className="text-[10px] tracking-wider text-[var(--accent-gold)] font-gallery-sans px-2 py-0.5 rounded-md bg-[var(--pill-bg)] border border-[var(--border-subtle)]">
-                      {badgeLabels[lot.badgeType] || lot.badgeType}
-                    </span>
-                  )}
-                </div>
-
                 <h2 className="font-gallery-serif text-3xl sm:text-4xl text-[var(--text-primary)] font-normal leading-tight">
                   {lot.title}
                 </h2>
@@ -210,12 +192,6 @@ export const LotDetailModal: React.FC<LotDetailModalProps> = ({
                   <div>
                     <span className="text-[var(--text-muted)] block text-[10px] uppercase tracking-wider">Вес / База</span>
                     <span className="text-[var(--text-primary)] font-medium">{lot.weight}</span>
-                  </div>
-                )}
-                {lot.certificateOfAuthenticity && (
-                  <div className="col-span-2 pt-1 border-t border-[var(--border-subtle)] flex items-center gap-1.5 text-emerald-400 text-[11px]">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>Сертификат подлинности WOW CONCEPT</span>
                   </div>
                 )}
               </div>

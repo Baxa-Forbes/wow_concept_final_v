@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Eye, Sparkles } from 'lucide-react';
+import { ArrowRight, Eye } from 'lucide-react';
 import { LotItem } from '../types';
 
 interface LotCardProps {
@@ -11,12 +11,6 @@ export const LotCard: React.FC<LotCardProps> = ({
   lot,
   onSelectLot,
 }) => {
-  const badgeLabels: Record<string, string> = {
-    UNIQUE: 'Уникальный лот',
-    MASTERPIECE: 'Шедевр коллекции',
-    EXCLUSIVE: 'Эксклюзив',
-    NEW: 'Новое поступление',
-  };
 
   return (
     <article
@@ -26,16 +20,6 @@ export const LotCard: React.FC<LotCardProps> = ({
     >
       {/* Visual Image Container with Square / 4:5 Aspect Ratio */}
       <div className="gallery-img-wrapper relative aspect-square bg-[var(--bg-surface)] overflow-hidden">
-        {/* Subtle Badge */}
-        {lot.badgeType && (
-          <div className="absolute top-3 left-3 z-10">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-gallery-sans tracking-widest uppercase bg-black/60 dark:bg-black/65 backdrop-blur-md text-white/95 border border-white/15 shadow-sm">
-              <Sparkles className="w-2.5 h-2.5 text-amber-300" />
-              <span>{badgeLabels[lot.badgeType] || lot.badgeType}</span>
-            </span>
-          </div>
-        )}
-
         {/* Artwork Image */}
         <img
           src={lot.image}
@@ -60,11 +44,6 @@ export const LotCard: React.FC<LotCardProps> = ({
       {/* Card Info & Typography */}
       <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between gap-4">
         <div>
-          {/* Lot Number */}
-          <span className="text-[10px] tracking-[0.25em] font-semibold text-blue-400 font-gallery-sans uppercase block mb-1">
-            {lot.lotNumber}
-          </span>
-
           {/* Title */}
           <h2 className="font-gallery-serif text-2xl sm:text-[26px] font-normal leading-tight text-[var(--text-primary)] group-hover:text-blue-400 transition-colors">
             {lot.title}
